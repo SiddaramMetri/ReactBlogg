@@ -7,7 +7,8 @@ const BloggCard = (props) => {
       <p className="text-sm text-gray-500">
         {props.intro}
       </p>
-      <button className="text-blue-500 font-bold mt-2 hover:text-blue-800">Read More</button>
+      <button onClick={props.showBloggDetails} 
+      className="text-blue-500 font-bold mt-2 hover:text-blue-800">Read More</button>
     </div>
   );
 };

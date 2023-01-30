@@ -11,6 +11,9 @@ const Blogs = (props) => {
               date={blogg.date}
               title={blogg.title}
               intro={blogg.intro}
+              showBloggDetails = {()=>{
+                props.setBloggIndex(i)
+              }}
             />
           );
         })}

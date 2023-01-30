@@ -2,9 +2,12 @@ import { useState } from "react";
 import Blogs from "./components/Blogs";
 import CreateBloggForm from "./components/CreateBloggForm";
 import Modal from "./components/Modal";
+import BloggDetail from "./components/BloggDetails";
 
 function App() {
   const [showCreateModel, setShowCreateModel] = useState(false);
+
+  const [bloggIndex, setBloggIndex] = useState(-1);
 
   const [bloggs, setBloggs] = useState([]);
 
@@ -20,7 +23,6 @@ function App() {
     <>
       <div className="m-20">
         <div className="flex justify-between items-center">
-
           <div>
             <h1 className="text-4xl text-gray-600 font-extrabold">BLOGG</h1>
             <p className="text-sm text-gray-700 mt-2 ">
@@ -36,7 +38,7 @@ function App() {
           </button>
         </div>
         <hr className="mt-6 " />
-        <Blogs bloggs={bloggs} />
+        <Blogs bloggs={bloggs} setBloggIndex={setBloggIndex} />
         <Modal
           show={showCreateModel}
           onClose={() => {
@@ -47,6 +49,15 @@ function App() {
             setBloggs={setBloggs}
             onCloseForm={closeCreateModel}
           />
+        </Modal>
+
+        <Modal
+          show={bloggIndex > -1}
+          onClose={() => {
+            setBloggIndex(-1);
+          }}
+        >
+          <BloggDetail bloggDetail={bloggs[bloggIndex]} />
         </Modal>
       </div>
     </>
