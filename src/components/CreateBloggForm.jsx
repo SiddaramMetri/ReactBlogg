@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 const CreateBloggForm = (props) => {
-  const [title, setTitle] = useState("");
-  const [intro, setIntro] = useState("");
-  const [content, setContent] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [title, setTitle] = useState(props.blogg?.title || '');
+  const [intro, setIntro] = useState(props.blogg?.intro || '');
+  const [content, setContent] = useState(props.blogg?.description || '');
+  const [imageUrl, setImageUrl] = useState(props.blogg?.imageUrl || '');
 
   return (
     <>
@@ -22,7 +22,7 @@ const CreateBloggForm = (props) => {
           />
           <br />
 
-          <label className="  font-bold">Intro</label>
+          <label className="font-bold">Intro</label>
           <br />
           <textarea
             className="mb-4  p-2 w-full border border-gray-500 rounded-md"
@@ -61,7 +61,16 @@ const CreateBloggForm = (props) => {
 
             <button
               onClick = {() => {
-                props.setBloggs(prev => [{date:new Date(),title, description:content, intro, imageUrl}, ...prev])
+                if(props.blogg){
+                  props.setBloggs(prev => prev.map((ele, i)=>{
+                      if(i===props.editBloggIndex){
+                        return {date:new Date(),title, description:content, intro, imageUrl}
+                      }
+                      return ele
+                  }))
+                } else {
+                  props.setBloggs(prev => [{date:new Date(),title, description:content, intro, imageUrl}, ...prev])
+                }
                 props.onCloseForm()
               }}
               className=" ml-2 p-2 text-white bg-green-700 border-black rounded-xl hover:bg-green-500 "

@@ -14,6 +14,9 @@ const Blogs = (props) => {
               showBloggDetails = {()=>{
                 props.setBloggIndex(i)
               }}
+              editBloggDetails = {()=>{
+                props.setBloggIndex(i)
+              }}
             />
           );
         })}

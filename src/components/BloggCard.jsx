@@ -9,6 +9,14 @@ const BloggCard = (props) => {
       </p>
       <button onClick={props.showBloggDetails} 
       className="text-blue-500 font-bold mt-2 hover:text-blue-800">Read More</button>
+      <div className="text-red-500 mt-2">
+        {/* <button 
+        onClick={props.editBloggDetails}
+        className="mr-2 hover:text-blue-800">Edit </button> 
+        <button 
+        onClick={props.deleteBloggDetails}
+        className="ml-2">Delete </button> */}
+      </div>
     </div>
   );
 };
